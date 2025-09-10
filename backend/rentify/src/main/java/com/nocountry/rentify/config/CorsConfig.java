@@ -1,14 +1,12 @@
-package com.nocountry.retrueque.config;
+package com.nocountry.rentify.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class CorsConfig {
@@ -17,16 +15,19 @@ public class CorsConfig {
   private String corsAllowedOrigins;
 
   @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOriginPatterns(Arrays.stream(corsAllowedOrigins.split(",")).map(String::trim).toList());
-    configuration.setAllowedMethods(List.of("OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE"));
-    configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With"));
-    configuration.setAllowCredentials(true);
-    configuration.setMaxAge(3600L);
+  public WebMvcConfigurer corsCustomConfig(){
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
+    String[] origins = Arrays.stream(corsAllowedOrigins.split(",")).map(String::trim).toArray(String[]::new);
+
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins(origins)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+      }
+    };
   }
 }
