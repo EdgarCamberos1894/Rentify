@@ -16,7 +16,7 @@ public class SwaggerConfig {
   @Bean
   public OpenAPI fimaOpenAPI() {
     return new OpenAPI()
-            .info(new Info().title("Aplicación")
+            .info(new Info().title("Rentify")
                     .description("Aplicación de API Rest para la plataforma rentify")
                     .version("v1.0.0")
                     .license(new License().name("App v1.0").url("http://")))
