@@ -14,6 +14,10 @@ import { AlertContext } from "../../context";
 import { authRegister, getRoles } from "../../service/auth/authService";
 import InputSelect from "../FormInputs/InputSelect";
 import InputText from "../FormInputs/InputText";
+import {
+  passwordRequirementsText,
+  passwordRules,
+} from "../../utils/passwordValidation";
 
 interface Role {
   id: number;
@@ -172,7 +176,11 @@ function RegisterForm() {
               type="password"
               label="Contrasena"
               control={control}
+              rules={passwordRules}
             />
+            <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+              {passwordRequirementsText}
+            </Typography>
           </FormControl>
 
           <Button variant="contained" type="submit" disabled={isSubmitting}>

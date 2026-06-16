@@ -70,6 +70,27 @@ export const authRecoveryPassword = async (email: string) => {
   }
 };
 
+export const authResetPassword = async (token: string, password: string) => {
+  try {
+    const response = await backend.post("/auth/reset-password", {
+      token,
+      password,
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+  }
+};
+
+export const authVerifyEmail = async (token: string) => {
+  try {
+    const response = await backend.post("/auth/verify-email", { token });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+  }
+};
+
 export const getUserAuth = async () => {
   try {
     const response = await backend.get(`/user-profile`, {

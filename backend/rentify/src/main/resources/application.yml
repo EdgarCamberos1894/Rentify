@@ -44,7 +44,7 @@ api:
 
 frontend:
   baseUrl: ${FRONT_BASE_URL:http://localhost:3000}
-  verifyEmailUrl: ${VERIFYEMAIL_URL:/auth/veryfy-email}
+  verifyEmailUrl: ${VERIFYEMAIL_URL:/auth/verify-email}
   resetPasswordUrl: ${RESETPASSWORD_URL:/auth/reset-password}
 
 web:

@@ -7,3 +7,5 @@ export { ProfilePage } from "./Profile/ProfilePage";
 export { PropertyInfoPage } from "./PropertyInfo/PropertyInfoPage";
 export { RegisterPage } from "./Register/RegisterPage";
 export { RegisterPropertyPage } from "./RegisterProperty/RegisterPropertyPage";
+export { ResetPasswordPage } from "./ResetPassword/ResetPasswordPage";
+export { VerifyEmailPage } from "./VerifyEmail/VerifyEmailPage";

@@ -3,7 +3,7 @@ import { AuthProvider, AlertProvider } from "./context";
 import { ThemeProvider } from "@emotion/react";
 import AlertElement from "./components/Alert/AlertElement";
 import Navbar from "./components/Navbar/Navbar";
-import { LandingPage, LoginPage, ExplorePage, PropertyInfoPage, AuthPage, ProfilePage, RegisterPage, RegisterPropertyPage, ModifyPropertyPage } from "./pages";
+import { LandingPage, LoginPage, ExplorePage, PropertyInfoPage, AuthPage, ProfilePage, RegisterPage, RegisterPropertyPage, ModifyPropertyPage, ResetPasswordPage, VerifyEmailPage } from "./pages";
 import theme from "./theme/theme";
 
 
@@ -18,6 +18,9 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
+              <Route path="/auth/veryfy-email" element={<VerifyEmailPage />} />
+              <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
               <Route path="/explore" element={<ExplorePage />} />
               <Route
                 path="/property/:propertyId"
