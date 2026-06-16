@@ -12,18 +12,6 @@ spring:
     properties:
       hibernate:
         default_schema: rentify
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${EMAIL_USERNAME}
-    password: ${EMAIL_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-
   flyway:
     schemas: rentify
     default-schema: rentify
@@ -46,6 +34,11 @@ token:
   time:
     expiration: ${TOKEN_PURPOSE:3600000} # 1 hora en milisegundos
 
+resend:
+  apiKey: ${RESEND_APIKEY}
+  email: ${RESEND_EMAIL}
+  name: ${RESEND_NAME:Rentify}
+
 api:
   base: api/v1
 
@@ -57,5 +50,3 @@ frontend:
 web:
   cors:
     allowed-origins: ${CORS_ALLOWED}
-
-

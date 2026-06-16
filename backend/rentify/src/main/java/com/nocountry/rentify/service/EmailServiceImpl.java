@@ -1,20 +1,22 @@
 package com.nocountry.rentify.service;
 
 import com.nocountry.rentify.dto.request.EmailReq;
+import com.nocountry.rentify.exception.EmailSendException;
 import com.nocountry.rentify.exception.UserNotVerifiedException;
 import com.nocountry.rentify.model.entity.UserProfile;
 import com.nocountry.rentify.model.enums.TokenPurpose;
 import com.nocountry.rentify.security.jwt.JwtTokenProvider;
 import com.nocountry.rentify.service.interfaces.EmailService;
 import com.nocountry.rentify.service.interfaces.UserProfileService;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientException;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
@@ -22,36 +24,59 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
 
-    private final JavaMailSender javaMailSender;
+    private static final String RESEND_EMAILS_URL = "https://api.resend.com/emails";
+
     private final SpringTemplateEngine templateEngine;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserProfileService userProfileService;
+    private final RestClient.Builder restClientBuilder;
+
+    @Value("${resend.apiKey}")
+    private String resendApiKey;
+
+    @Value("${resend.email}")
+    private String resendEmail;
+
+    @Value("${resend.name}")
+    private String resendName;
+
+    @Value("${frontend.baseUrl}")
+    private String baseUrl;
+
+    @Value("${frontend.verifyEmailUrl}")
+    private String verifyEmailUrl;
 
     @Override
     public void sendEmail(String to, String subject, Map<String, Object> templateModel, String templateName) {
         try {
-            MimeMessage message = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
             Context context = new Context();
             context.setVariables(templateModel);
 
             String htmlBody = templateEngine.process(templateName, context);
 
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(htmlBody, true);
+            Map<String, Object> requestBody = Map.of(
+                    "from", resendName + " <" + resendEmail + ">",
+                    "to", List.of(to),
+                    "subject", subject,
+                    "html", htmlBody
+            );
 
-            javaMailSender.send(message);
-
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            restClientBuilder.build()
+                    .post()
+                    .uri(RESEND_EMAILS_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .headers(headers -> headers.setBearerAuth(resendApiKey))
+                    .body(requestBody)
+                    .retrieve()
+                    .toBodilessEntity();
+        } catch (RestClientException e) {
+            throw new EmailSendException("Error sending email with Resend", e);
         }
     }
 
     @Override
     public void sendVerificationEmail(EmailReq request) {
-        UserProfile profile =  userProfileService.getByUserEmail(request.email());
+        UserProfile profile = userProfileService.getByUserEmail(request.email());
         if (profile.getUser().isVerify()) {
             throw new UserNotVerifiedException("The user with email " + request.email() + " already has their account verified");
         }
@@ -60,7 +85,7 @@ public class EmailServiceImpl implements EmailService {
 
         Map<String, Object> templateModel = new HashMap<>();
         templateModel.put("name", profile.getName());
-        templateModel.put("verifyEmailUrl","http://localhost:8080/auth/veryfy-email?token="+token);
+        templateModel.put("verifyEmailUrl", baseUrl + verifyEmailUrl + "?token=" + token);
 
         sendEmail(profile.getUser().getEmail(),
                 "Welcome! Confirm Your Email to Get Started",

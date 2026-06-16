@@ -10,7 +10,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailSendException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -62,9 +61,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(MailSendException.class)
-    public ResponseEntity<ErrorResponse> handleMailSendException(MailSendException ex) {
-        String message = ex.getMostSpecificCause().getMessage();
+    @ExceptionHandler(EmailSendException.class)
+    public ResponseEntity<ErrorResponse> handleEmailSendException(EmailSendException ex) {
+        String message = ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage();
         ErrorResponse errorResponse = new ErrorResponse("Error al enviar el correo electrónico: " + message, HttpStatus.SERVICE_UNAVAILABLE);
         return new ResponseEntity<>(errorResponse, errorResponse.status());
     }

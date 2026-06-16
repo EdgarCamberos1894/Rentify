@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
   @Value("${frontend.baseUrl}")
   private String baseUrl;
 
-  @Value("${frontend.verifyEmailUrl}")
+  @Value("${frontend.resetPasswordUrl}")
   private String resetPasswordUrl;
 
   @Override

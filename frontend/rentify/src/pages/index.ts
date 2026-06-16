@@ -5,4 +5,5 @@ export { LoginPage } from "./Login/LoginPage";
 export { ModifyPropertyPage } from "./ModifyProperty/ModifyPropertyPage";
 export { ProfilePage } from "./Profile/ProfilePage";
 export { PropertyInfoPage } from "./PropertyInfo/PropertyInfoPage";
+export { RegisterPage } from "./Register/RegisterPage";
 export { RegisterPropertyPage } from "./RegisterProperty/RegisterPropertyPage";

@@ -21,6 +21,33 @@ export const authLogin = async (email: string, password: string) => {
   }
 };
 
+interface RegisterPayload {
+  username?: string;
+  name?: string;
+  lastname?: string;
+  email: string;
+  password: string;
+  roleId: number;
+}
+
+export const authRegister = async (payload: RegisterPayload) => {
+  try {
+    const response = await backend.post("/auth/register", payload);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+  }
+};
+
+export const getRoles = async () => {
+  try {
+    const response = await backend.get("/role");
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+  }
+};
+
 export const authLogout = async () => {
   try {
     const response = await backend.post(
