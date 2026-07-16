@@ -1,393 +1,171 @@
-<div align="center">
-  <h2>Bienvenido a Rentify</h2>
-  <img src="https://github.com/user-attachments/assets/4af375dd-1cb4-44a0-b2df-24bb7463e51c" alt="Logo de Rentify" width="100px" />
-  
-  <p>Facilitando el alquiler de propiedades de forma rápida y segura.</p>
-</div>
+# Rentify
 
----
-## 🚀 Introducción
+Rentify es una aplicacion web colaborativa para publicar, buscar y gestionar propiedades en alquiler. El proyecto fue desarrollado como una experiencia de trabajo en equipo, con frontend, backend, UX/UI y gestion de proyecto separados por responsabilidades.
 
-**Rentify** es una aplicación web que simplifica el proceso de alquiler de propiedades, conectando a propietarios e inquilinos en un entorno intuitivo y seguro. Tanto propietarios como inquilinos pueden gestionar sus propiedades y búsquedas de manera eficiente.
+## Demo y enlaces
 
+- Frontend desplegado: [Rentify](https://rentify-desarrollo.onrender.com)
+- Swagger backend: [API Docs](https://s18-23-n-java-react.onrender.com/swagger-ui/index.html)
+- Repositorio: [EdgarCamberos1894/Rentify](https://github.com/EdgarCamberos1894/Rentify)
+- Repositorio colaborativo original: [No-Country-simulation/S18-23-n-java-react](https://github.com/No-Country-simulation/S18-23-n-java-react)
 
----
-## 🎯 Objetivo Principal
+## Contexto del proyecto
 
-Ofrecer a los inquilinos una plataforma de búsqueda rápida y personalizable, mientras que los propietarios pueden crear y gestionar sus anuncios fácilmente.
+Este fue uno de mis primeros proyectos colaborativos fullstack. No fue un proyecto individual: el frontend, backend, diseno y gestion fueron trabajados por distintos integrantes del equipo.
 
----
-## 🌟 Funcionalidades
+Mi participacion estuvo enfocada principalmente en backend, configuracion, soporte para despliegue y mejoras posteriores de integracion. Lo presento en mi portafolio como una muestra de trabajo colaborativo, integracion con otros equipos y mantenimiento de un producto ya existente.
 
-<dl>
-  <dt>✅ Búsqueda Inteligente de Propiedades</dt>
-  <dt>✅ Registro y gestión de propiedades</dt>
-  <dt>✅ Seguridad y gestión de la plataforma</dt>
-</dl>
+## Mi contribucion
 
----
-<br>
+Con base en el historial del repositorio, mis aportes principales se concentraron en:
 
-## 🛠️ Tecnologías
+- Configuracion inicial del backend con Spring Boot.
+- Configuracion de Docker para el servicio backend.
+- Configuracion de CORS y ajustes para permitir comunicacion con el frontend.
+- Configuracion de Swagger/OpenAPI.
+- Migraciones de base de datos y datos de prueba con Flyway.
+- Correcciones en nombres y estructura de migraciones.
+- Soporte para rol `INMOBILIARIA` y campo `username` en perfiles.
+- Ajustes en respuestas de usuario y perfil, incluyendo datos necesarios para el frontend.
+- Configuracion por variables de entorno para facilitar despliegues.
+- Integracion posterior de Resend para correos transaccionales.
+- Mejoras posteriores en flujos de verificacion de email y recuperacion de contrasena.
+- Documentacion tecnica y ajustes de despliegue.
 
-<table>
-  <thead>
-    <tr>
-      <th>Front-End</th>
-      <th>Back-End</th>
-      <th>UX/UI</th>
-      <th>Gestión</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img alt="typescript" src="https://img.shields.io/badge/TypeScript-%23007ACC?logo=typescript&logoColor=white"></td>
-      <td><img alt="java" src="https://img.shields.io/badge/Java-%23ED8B00?logo=java&logoColor=white"></td>
-      <td><img alt="figma" src="https://img.shields.io/badge/Figma-%23424F5B?logo=figma&logoColor=white"></td>
-      <td><img alt="asana" src="https://img.shields.io/badge/Asana-%23333?logo=asana&logoColor=F06A6A"></td>
-    </tr>
-    <tr>
-      <td><img alt="react.js" src="https://img.shields.io/badge/React.js-%2361DAFB?logo=react&logoColor=white"></td>
-      <td><img alt="springboot" src="https://img.shields.io/badge/Spring%20Boot-%236DB33F?logo=springboot&logoColor=white"></td>
-      <td><img alt="illustrator" src="https://img.shields.io/badge/Illustrator-%23FF9A00?logo=adobeillustrator&logoColor=white"></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><img alt="vite" src="https://img.shields.io/badge/Vite-%23646CFF?logo=vite&logoColor=white"></td>
-      <td><img alt="mysql" src="https://img.shields.io/badge/MySQL-%2300758f?logo=mysql&logoColor=white"></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><img alt="Material-UI" src="https://img.shields.io/badge/Material%20UI-%230081CB?logo=material-ui&logoColor=white"></td>
-      <td><img alt="json-web-tokens" src="https://img.shields.io/badge/JSON%20Web%20Tokens-%23000000?logo=json%20web%20tokens&logoColor=white"></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><img alt="Axios" src="https://img.shields.io/badge/Axios-%230072B1?logo=axios&logoColor=white"></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-<br>
+No fui responsable del desarrollo completo de autenticacion ni del frontend completo. El objetivo de esta version es documentar de forma clara y honesta mi participacion dentro del equipo.
 
----
+## Funcionalidades principales
 
-<h1 align="center"> 
-  🧑‍🤝‍🧑 Equipo
-</h1>
+- Registro de usuarios.
+- Login con JWT.
+- Verificacion de cuenta por correo.
+- Reenvio de correo de verificacion.
+- Recuperacion y reseteo de contrasena.
+- Roles de usuario e inmobiliaria.
+- Exploracion de propiedades.
+- Detalle de propiedad.
+- Registro y modificacion de propiedades.
+- Filtros por ubicacion, tipo de propiedad, habitaciones, amenities y features.
+- Gestion de perfil.
+- Documentacion de API con Swagger.
 
-<dl>
-  <dt>⚛️ Front-End</dt>
-  <dd>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>GitHub</th>
-          <th>LinkedIn</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Angel Añez</td>
-          <td>
-            <a href="https://github.com/AngelAnez">
-              <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-            </a>
-          </td>
-          <td>
-            <a href="https://www.linkedin.com/in/angel-anez/">
-              <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>Jhosep Tinta</td>
-          <td>
-            <a href="https://github.com/JhosepTM">
-              <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-            </a>
-          </td>
-          <td>
-            <a href="#">
-              <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>Joaquín Herrera</td>
-          <td>
-            <a href="https://github.com/JoaquinxHerrera">
-              <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-            </a>
-          </td>
-          <td>
-            <a href="#">
-              <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>Manuel Filgueira</td>
-          <td>
-            <a href="https://github.com/mf114090">
-              <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-            </a>
-          </td>
-          <td>
-            <a href="#">
-              <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>William Polanco</td>
-          <td>
-            <a href="https://github.com/williampolancodev">
-              <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-            </a>
-          </td>
-          <td>
-            <a href="https://www.linkedin.com/in/william-polanco-abbba7140/">
-              <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </dd>
-  <dt>💻 Back-End</dt>
-  <dd>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>GitHub</th>
-          <th>LinkedIn</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-              <td>Diego Jorges</td>
-              <td>
-                <a href="https://github.com/djorges">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Edgar Camberos</td>
-              <td>
-                <a href="https://github.com/EdgarCamberos1894">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="https://www.linkedin.com/in/edgar-camberos-8a66052bb">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Gabriel Romero</td>
-              <td>
-                <a href="https://github.com/gabeust">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Kenti Antezana</td>
-              <td>
-                <a href="https://github.com/23737k">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Matías Badano</td>
-              <td>
-                <a href="https://github.com/MatiasJB95">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Oliver Barahona</td>
-              <td>
-                <a href="https://github.com/OliverMBM">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Rafael Cortez</td>
-              <td>
-                <a href="https://github.com/RafaelJUY">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-      </tbody>
-    </table>
-  </dd>
-  <dd>
-  <dt>🖌 UX/UI</dt>
-    <dl>
-      <dd>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Github</th>
-              <th>Linkedin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nestor Rubiano</td>
-              <td>
-                <a href="https://github.com/NestorVal">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="https://www.linkedin.com/in/nestor-rubiano-b205a9270/">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </dd>
-    </dl>
-  </dd>
-  <dd>
-  <dt>📝 Project Manager</dt>
-    <dl>
-      <dd>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Github</th>
-              <th>Linkedin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Triana Devia</td>
-              <td>
-                <a href="https://github.com/TrianaDevia">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="https://www.linkedin.com/in/triana-devia?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </dd>
-    </dl>
-  </dd>
-  <dd>
-  <dt>♟️ Team Leader</dt>
-    <dl>
-      <dd>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Github</th>
-              <th>Linkedin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Gonzalo Villegas</td>
-              <td>
-                <a href="">
-                  <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-                </a>
-              </td>
-              <td>
-                <a href="">
-                  <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </dd>
-    </dl>
-  </dd>
-</dl>
-<br>
+## Tecnologias
 
----
+### Frontend
 
-## 🔗 Enlaces Importantes
+- React
+- TypeScript
+- Vite
+- Material UI
+- React Hook Form
+- Axios
+- Leaflet / React Leaflet
 
-* 🚀 Despliegue del Frontend
->El frontend está desplegado y disponible en [Rentify](https://rentify-desarrollo.onrender.com).
-* 📜 Swagger del Backend
->Accede a la documentación de la API del backend a través de [Swagger](https://s18-23-n-java-react.onrender.com/swagger-ui/index.html).
-<br>
+### Backend
 
----
+- Java 17
+- Spring Boot
+- Spring Security
+- JWT
+- Spring Data JPA
+- Flyway
+- MySQL / PostgreSQL
+- Swagger / OpenAPI
+- Resend
+- Docker
 
-## 📸 Vista Previa de la Aplicación
+## Estructura del repositorio
 
-| Pantalla 1 | Pantalla 2 |
-|------------|------------|
-| ![Pantalla 1](https://github.com/user-attachments/assets/1cad6c70-4e07-4ac0-ac14-c1797c65f9c8) | ![Pantalla 2](https://github.com/user-attachments/assets/535f2251-5b23-4f09-95f6-92f0c6bf7fc7) |
+```text
+backend/
+  rentify/        Backend Spring Boot
 
-| Pantalla 3 | Pantalla 4 |
-|------------|------------|
-| ![Pantalla 3](https://github.com/user-attachments/assets/2b113514-0049-498c-ad6f-6a2c3f67c15f) | ![Pantalla 4](https://github.com/user-attachments/assets/56491607-7fe7-4b6d-9e93-2f5bd7867fee) |
+frontend/
+  rentify/        Frontend React + Vite
+```
 
+## Variables de entorno
 
----
-<br>
-<br>
+El proyecto usa variables de entorno para separar configuracion local y produccion.
 
-## 📄 Licencia
+Backend:
 
-Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
+```env
+DATABASE=jdbc:postgresql://localhost:5432/database
+DB_USER=user
+DB_PASSWORD=password
+DATABASE_TYPE=postgresql
+
+RESEND_APIKEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+RESEND_EMAIL=rentyfy@cambers.lat
+RESEND_NAME=Rentify
+
+FRONT_BASE_URL=http://localhost:3000
+VERIFYEMAIL_URL=/auth/verify-email
+RESETPASSWORD_URL=/auth/reset-password
+
+JWT_EXPIRATION=86400000
+JWT_SECRETKEY=base64-secret
+CORS_ALLOWED=http://localhost:*
+```
+
+Frontend:
+
+```env
+VITE_API_URL=http://localhost:8080/api/v1
+VITE_CLOUDINARY_CLOUD_NAME=cloud_name
+VITE_CLOUDINARY_UPLOAD_PRESET=upload_preset
+VITE_CLOUDINARY_FOLDER=folder
+```
+
+## Como correr el proyecto
+
+### Backend
+
+```bash
+cd backend/rentify
+./mvnw spring-boot:run
+```
+
+En Windows:
+
+```powershell
+cd backend\rentify
+.\mvnw.cmd spring-boot:run
+```
+
+### Frontend
+
+```bash
+cd frontend/rentify
+npm install
+npm run dev
+```
+
+Por defecto, Vite levanta el frontend en:
+
+```text
+http://localhost:3000
+```
+
+## Comandos utiles
+
+Backend:
+
+```bash
+./mvnw test
+./mvnw -DskipTests compile
+```
+
+Frontend:
+
+```bash
+npm run build
+npm run lint
+```
+
+## Notas para portafolio
+
+Este proyecto muestra experiencia trabajando con un equipo multidisciplinario, integrando frontend y backend, resolviendo problemas de despliegue y ajustando una aplicacion real con multiples capas.
+
+Mi enfoque al presentarlo es backend e integracion, no autoria completa del producto.

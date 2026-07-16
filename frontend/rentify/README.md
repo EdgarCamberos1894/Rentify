@@ -1,50 +1,88 @@
-# React + TypeScript + Vite
+# Rentify Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend de Rentify construido con React, TypeScript, Vite y Material UI. Consume la API del backend para registro, login, verificacion de cuenta, recuperacion de contrasena, exploracion de propiedades y gestion de publicaciones.
 
-Currently, two official plugins are available:
+## Contexto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este frontend fue desarrollado por el equipo de frontend dentro del proyecto colaborativo. En esta version se documenta su ejecucion y configuracion para facilitar la revision desde portafolio.
 
-## Expanding the ESLint configuration
+## Tecnologias
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Vite
+- Material UI
+- React Router
+- React Hook Form
+- Axios
+- Leaflet / React Leaflet
 
-- Configure the top-level `parserOptions` property like this:
+## Variables de entorno
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Crea un archivo `.env` local tomando como base `.env.example`.
+
+```env
+VITE_API_URL=http://localhost:8080/api/v1
+
+VITE_CLOUDINARY_CLOUD_NAME=cloud_name
+VITE_CLOUDINARY_UPLOAD_PRESET=upload_preset
+VITE_CLOUDINARY_FOLDER=folder
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Notas:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- `VITE_API_URL` debe apuntar al backend.
+- Las variables de Cloudinary se usan para la carga de imagenes.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## Ejecucion local
+
+```bash
+npm install
+npm run dev
 ```
+
+Por configuracion de Vite, el frontend corre en:
+
+```text
+http://localhost:3000
+```
+
+## Build de produccion
+
+```bash
+npm run build
+```
+
+## Preview local del build
+
+```bash
+npm run preview
+```
+
+## Scripts disponibles
+
+```json
+{
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "lint": "eslint .",
+  "preview": "vite preview"
+}
+```
+
+## Rutas principales
+
+- `/`
+- `/login`
+- `/register`
+- `/explore`
+- `/property/:propertyId`
+- `/profile`
+- `/register-property`
+- `/modify-property/:propertyId`
+- `/auth/verify-email`
+- `/auth/reset-password`
+
+## Nota de autoria
+
+El frontend fue una responsabilidad del equipo de frontend. Los cambios posteriores documentados en este fork estan orientados a integracion, configuracion y soporte de flujos necesarios para que el proyecto pueda mostrarse correctamente en portafolio.

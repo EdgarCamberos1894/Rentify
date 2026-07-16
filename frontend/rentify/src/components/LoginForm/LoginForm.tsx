@@ -11,7 +11,10 @@ import {
 import { FieldValues, useForm } from "react-hook-form";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { AuthContext, AlertContext } from "../../context";
-import { authLogin } from "../../service/auth/authService";
+import {
+  authLogin,
+  authResendVerificationEmail,
+} from "../../service/auth/authService";
 import ForgotPassword from "./ForgotPassword";
 import InputText from "../FormInputs/InputText";
 
@@ -20,6 +23,8 @@ function LoginForm() {
   const { showAlert } = useContext(AlertContext);
   const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
+  const [unverifiedEmail, setUnverifiedEmail] = useState("");
+  const [isResendingVerification, setIsResendingVerification] = useState(false);
 
   const { control, handleSubmit } = useForm<FieldValues>({
     defaultValues: { email: "", password: "" },
@@ -29,12 +34,37 @@ function LoginForm() {
     const { email, password } = data;
     const response = await authLogin(email, password);
 
-    if (response.isSuccess) {
+    if (response?.isSuccess) {
+      setUnverifiedEmail("");
       userLogin(response.data);
       showAlert("success", "Inicio de sesión exitoso");
       navigate("/");
     } else {
-      showAlert("error", response.message);
+      const message = response?.message || "Ha ocurrido un error al iniciar sesion";
+      const isUserNotVerified = message.toLowerCase().includes("not verified");
+
+      setUnverifiedEmail(isUserNotVerified ? email : "");
+      showAlert("error", message);
+    }
+  };
+
+  const handleResendVerificationEmail = async () => {
+    if (!unverifiedEmail) return;
+
+    setIsResendingVerification(true);
+    const response = await authResendVerificationEmail(unverifiedEmail);
+    setIsResendingVerification(false);
+
+    if (response?.isSuccess) {
+      showAlert(
+        "success",
+        "Correo de verificacion reenviado. Revisa tu bandeja de entrada."
+      );
+    } else {
+      showAlert(
+        "error",
+        response?.message || "No se pudo reenviar el correo de verificacion"
+      );
     }
   };
 
@@ -107,6 +137,33 @@ function LoginForm() {
           <Button variant="contained" type="submit">
             Iniciar Sesión
           </Button>
+          {unverifiedEmail && (
+            <Box
+              sx={{
+                border: 1,
+                borderColor: "primary.light",
+                borderRadius: 2,
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+                gap: 1.5,
+              }}
+            >
+              <Typography variant="body2">
+                Tu cuenta todavia no esta verificada. Puedes reenviar el correo
+                de verificacion a {unverifiedEmail}.
+              </Typography>
+              <Button
+                variant="outlined"
+                onClick={handleResendVerificationEmail}
+                disabled={isResendingVerification}
+              >
+                {isResendingVerification
+                  ? "Reenviando..."
+                  : "Reenviar correo de verificacion"}
+              </Button>
+            </Box>
+          )}
           <Typography
             textAlign={"center"}
             variant="body2"

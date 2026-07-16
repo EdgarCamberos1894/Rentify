@@ -91,6 +91,17 @@ export const authVerifyEmail = async (token: string) => {
   }
 };
 
+export const authResendVerificationEmail = async (email: string) => {
+  try {
+    const response = await backend.post("/auth/resend-verification-email", {
+      email,
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) return error.response?.data;
+  }
+};
+
 export const getUserAuth = async () => {
   try {
     const response = await backend.get(`/user-profile`, {
