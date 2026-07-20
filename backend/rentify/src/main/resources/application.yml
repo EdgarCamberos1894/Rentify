@@ -1,38 +1,48 @@
 spring:
   application:
     name: rentify
+  profiles:
+    default: dev
   datasource:
     url: ${DATABASE}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
+    hikari:
+      schema: ${DB_SCHEMA:rentify}
+      maximum-pool-size: ${DB_POOL_MAX_SIZE:2}
+      minimum-idle: ${DB_POOL_MIN_IDLE:0}
+      connection-timeout: ${DB_POOL_CONNECTION_TIMEOUT_MS:30000}
+      idle-timeout: ${DB_POOL_IDLE_TIMEOUT_MS:300000}
+      max-lifetime: ${DB_POOL_MAX_LIFETIME_MS:1200000}
+      pool-name: ${spring.application.name}-pool
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        default_schema: rentify
+        default_schema: ${DB_SCHEMA:rentify}
   flyway:
-    schemas: rentify
-    default-schema: rentify
+    schemas: ${DB_SCHEMA:rentify}
+    default-schema: ${DB_SCHEMA:rentify}
     create-schemas: true
     locations: classpath:db/migration/${DATABASE_TYPE:mysql}
 
-
+logging:
   level:
-    org.springframework.security: DEBUG
-    org.springframework.security.web.authentication: DEBUG
-    org.springframework.security.web.access: DEBUG
+    org.springframework.security: INFO
+    org.springframework.security.web.authentication: INFO
+    org.springframework.security.web.access: INFO
 
 jwt:
   time:
-    expiration: ${JWT_EXPIRATION:86400000} # 1 dia en milisegundos
+    expiration: ${JWT_EXPIRATION:86400000}
   secret:
-    key: ${JWT_SECRETKEY:OuqtXAJaOLVlcEmXSn6h5v2zL+FZgHSVl2ZjjXOXAqY=}
+    key: ${JWT_SECRETKEY}
 
 token:
   time:
-    expiration: ${TOKEN_PURPOSE:3600000} # 1 hora en milisegundos
+    expiration: ${TOKEN_PURPOSE:3600000}
 
 resend:
   apiKey: ${RESEND_APIKEY}
