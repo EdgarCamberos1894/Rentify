@@ -4,8 +4,8 @@ Rentify es una aplicacion web colaborativa para publicar, buscar y gestionar pro
 
 ## Demo y enlaces
 
-- Frontend desplegado: [Rentify](https://rentify-desarrollo.onrender.com)
-- Swagger backend: [API Docs](https://s18-23-n-java-react.onrender.com/swagger-ui/index.html)
+- Frontend desplegado: [Rentify](https://rentify-eta-henna.vercel.app)
+- Swagger backend: [API Docs](https://rentify-4x9t.onrender.com/swagger-ui/index.html)
 - Repositorio: [EdgarCamberos1894/Rentify](https://github.com/EdgarCamberos1894/Rentify)
 - Repositorio colaborativo original: [No-Country-simulation/S18-23-n-java-react](https://github.com/No-Country-simulation/S18-23-n-java-react)
 
