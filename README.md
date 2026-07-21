@@ -4,6 +4,11 @@ Rentify es una aplicacion web colaborativa para publicar, buscar y gestionar pro
 
 ## Demo y enlaces
 
+El inicio de sesion permite cargar una cuenta de propietario con datos publicados:
+
+- Correo: `johndoe@example.com`
+- Contrasena: `Demo123!`
+
 - Frontend desplegado: [Rentify](https://rentify-eta-henna.vercel.app)
 - Swagger backend: [API Docs](https://rentify-4x9t.onrender.com/swagger-ui/index.html)
 - Repositorio: [EdgarCamberos1894/Rentify](https://github.com/EdgarCamberos1894/Rentify)

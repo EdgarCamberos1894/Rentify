@@ -18,6 +18,11 @@ import {
 import ForgotPassword from "./ForgotPassword";
 import InputText from "../FormInputs/InputText";
 
+const demoCredentials = {
+  email: "johndoe@example.com",
+  password: "Demo123!",
+};
+
 function LoginForm() {
   const { userLogin } = useContext(AuthContext);
   const { showAlert } = useContext(AlertContext);
@@ -26,7 +31,7 @@ function LoginForm() {
   const [unverifiedEmail, setUnverifiedEmail] = useState("");
   const [isResendingVerification, setIsResendingVerification] = useState(false);
 
-  const { control, handleSubmit } = useForm<FieldValues>({
+  const { control, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: { email: "", password: "" },
   });
 
@@ -177,6 +182,30 @@ function LoginForm() {
               Regístrate
             </Link>
           </Typography>
+          <Box
+            component="section"
+            aria-labelledby="rentify-demo-title"
+            sx={{
+              borderTop: 1,
+              borderColor: "divider",
+              pt: 2.5,
+              display: "flex",
+              flexDirection: "column",
+              gap: 1.5,
+            }}
+          >
+            <Typography id="rentify-demo-title" variant="subtitle2" fontWeight={700}>
+              Acceso de demostración
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Propietario: {demoCredentials.email}
+              <br />
+              Contraseña: {demoCredentials.password}
+            </Typography>
+            <Button variant="outlined" type="button" onClick={() => reset(demoCredentials)}>
+              Cargar credenciales de demostración
+            </Button>
+          </Box>
         </Box>
         <ForgotPassword open={openDialog} handleClose={handleDialogClose} />
       </Paper>
