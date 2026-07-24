@@ -9,7 +9,7 @@ El inicio de sesion permite cargar una cuenta de propietario con datos publicado
 - Correo: `johndoe@example.com`
 - Contrasena: `Demo123!`
 
-- Frontend desplegado: [Rentify](https://rentify-eta-henna.vercel.app)
+- Frontend desplegado: [Rentify](https://rentify.cambers.lat)
 - Swagger backend: [API Docs](https://rentify-4x9t.onrender.com/swagger-ui/index.html)
 - Repositorio: [EdgarCamberos1894/Rentify](https://github.com/EdgarCamberos1894/Rentify)
 - Repositorio colaborativo original: [No-Country-simulation/S18-23-n-java-react](https://github.com/No-Country-simulation/S18-23-n-java-react)
